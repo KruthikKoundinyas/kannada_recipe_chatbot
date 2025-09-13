@@ -42,7 +42,3 @@ Thumbs.db
 # Kaggle, Roboflow downloads (if applicable)
 kaggle.json
 roboflow.json
-
-# Other
-README.md
-requirements.txt

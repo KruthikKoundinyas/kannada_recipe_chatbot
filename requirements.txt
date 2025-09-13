@@ -1,0 +1,25 @@
+# NLP and Embedding Models
+sentence-transformers
+# Vector Search
+faiss-cpu
+# Web & UI
+gradio
+# Google Gemini AI Interface
+google-genai
+google-generativeai
+# Kaggle Datasets and Dataframes
+kagglehub[pandas-datasets]
+# Inference Tools (for working with models)
+inference
+inference-cli
+# Computer Vision
+opencv-python
+Pillow
+# Torch & Ultralytics YOLO
+torch
+ultralytics
+# YAML, Pandas, PyYAML for data processing
+pyyaml
+pandas
+# dotenv for env management
+python-dotenv
