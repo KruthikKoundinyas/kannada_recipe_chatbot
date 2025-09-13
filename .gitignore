@@ -1,0 +1,48 @@
+# Python virtual environment
+.venv/
+venv/
+__pycache__/
+*.pyc
+
+# Environment variables and secrets
+.env
+
+# Dataset and model folders/files
+merged_dataset/
+food-ingredients-1/
+FOOD-INGREDIENTS-dataset-1/
+FOOD-INGREDIENTS-dataset-3/
+SmartFridgle-1/
+ultralytics/
+photo.jpeg
+
+# Model weights
+*.pt
+
+# Jupyter/IPython checkpoints and notebooks
+.ipynb_checkpoints/
+*.ipynb
+
+# Gradio cache and artifacts
+gradio_caches/
+gradio_cache/
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Logs and outputs
+*.log
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+
+# Kaggle, Roboflow downloads (if applicable)
+kaggle.json
+roboflow.json
+
+# Other
+README.md
+requirements.txt
