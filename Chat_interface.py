@@ -37,11 +37,11 @@ import matplotlib.pyplot as plt
 from collections import Counter
 
 # Load your trained YOLO model
-model = YOLO(r"C:/users/kruth/runs/detect/train29/weights/best.pt")
+model = YOLO(r"best.pt")
 
 #%%
 # Use the photo you captured locally (make sure photo.jpeg exists)
-img_path = "photo.jpeg"
+img_path = "temp_input.jpg"
 
 # Run prediction
 results = model.predict(img_path, imgsz=640)

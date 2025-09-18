@@ -15,6 +15,7 @@ FOOD-INGREDIENTS-dataset-3/
 SmartFridgle-1/
 ultralytics/
 photo.jpeg
+temp_input.jpg
 
 # Model weights
 *.pt

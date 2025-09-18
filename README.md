@@ -1,26 +1,29 @@
-# Kannada Recipe Assistant (RAG + Gemini)
+# 🥘 Kannada Recipe Assistant
 
-An end-to-end intelligent assistant that detects ingredients from images (using YOLO), retrieves matching Kannada recipes via RAG, and provides conversational cooking support using — all wrapped in a clean web interface.
+**YOLO + Gradio + Gemini**
+
+An end-to-end intelligent assistant that detects ingredients from images (using ), retrieves matching Kannada recipes from a local dataset, and provides conversational cooking support in Kannada using  — all through a seamless Gradio web interface.
 
 ---
 
 ## 🌟 Features
 
-- **Ingredient Detection:** Detects food ingredients from photos using / models.
-- **Language Mapping:** Automatically maps detected ingredient names to Kannada.
-- **Recipe Retrieval (RAG):** Retrieves relevant Kannada recipes from a large dataset using Retrieval-Augmented Generation.
-- **Conversational Cooking AI:** Answers user questions in Kannada using , contextualized to selected recipes and detected ingredients.
-- **Interactive UI:** Simple and intuitive interface built with for a smooth user experience.
+* **Ingredient Detection:** Detects food ingredients from uploaded or captured images using YOLO models.
+* **Language Mapping:** Automatically translates detected ingredient names to Kannada.
+* **Recipe Retrieval:** Fetches relevant Kannada recipes from a local CSV dataset.
+* **Conversational Cooking AI:** Answers user questions in Kannada using Gemini, with context from the selected recipe and detected ingredients.
+* **Interactive UI:** Clean, responsive interface powered by Gradio.
+* **Mobile-Friendly:** Supports image capture directly from your phone via link or upload.
 
 ---
 
 ## ⚙️ Example Workflow
 
-1. Upload or capture a photo of ingredients.
+1. Upload or capture a photo of ingredients using webcam, desktop, or phone.
 2. The system detects all visible ingredients using YOLO.
 3. Ingredient names are translated to Kannada.
-4. Relevant Kannada recipes are retrieved using RAG.
-5. Chat with the assistant in Kannada for cooking instructions, clarifications, or substitutions.
+4. Relevant Kannada recipes are retrieved from the local dataset.
+5. Chat with the assistant in Kannada for step-by-step cooking help and clarifications.
 
 ---
 
@@ -28,8 +31,8 @@ An end-to-end intelligent assistant that detects ingredients from images (using 
 
 ### Prerequisites
 
-- &#x20;3.9 or later
-- CUDA-capable GPU (optional but recommended for faster YOLO inference)
+* Python3.9+
+* NVIDIA CUDA-capable GPU (recommended for faster YOLO inference)
 
 ### Clone and Install
 
@@ -48,7 +51,7 @@ GEMINI_API_KEY=your_gemini_api_key_here
 ROBOFLOW_API_KEY=your_roboflow_api_key_here
 ```
 
-> ⚠️ **Never commit `.env` to version control** — it contains secret keys.
+> ⚠️ **Never commit `.env` to version control** — it contains your secret API keys.
 
 ---
 
@@ -57,23 +60,28 @@ ROBOFLOW_API_KEY=your_roboflow_api_key_here
 Run the app from your terminal:
 
 ```bash
-python app.py
+python User_input.py
 ```
 
-**Default behavior:**
+**What happens:**
 
-- Captures image from webcam or uses `photo.jpeg`.
-- Runs YOLO detection, translates ingredient names, retrieves best-matching Kannada recipes.
-- Enables conversational cooking support in Kannada within the web interface.
+* Captures image from webcam, phone (via link/upload), or uses `photo.jpeg`.
+* Runs YOLO detection, translates ingredient names, and retrieves matching Kannada recipes.
+* Enables conversational cooking support in Kannada within the Gradio web interface.
 
 ---
 
 ## 🧠 Architecture Overview
 
 ```
-Image → YOLO Detection → Ingredient Names → Kannada Mapping
-      → RAG Search (Recipe Dataset) → Top Recipes
-      → Conversational Q&A via Gemini → Gradio UI
+Image 
+ → YOLO Detection 
+ → Ingredient Names 
+ → Kannada Mapping
+ → Recipe Search (Local Dataset)
+ → Top Kannada Recipes
+ → Conversational Q&A via Gemini
+ → Gradio UI
 ```
 
 ---
@@ -82,58 +90,83 @@ Image → YOLO Detection → Ingredient Names → Kannada Mapping
 
 ```
 .
-├── app.py                    # Main entry point
-├── requirements.txt          # Dependencies
-├── english_to_kannada.py     # Utility: English → Kannada mapping
-├── data/                     # YOLO models + recipe datasets
-├── .env                      # API keys (not tracked in Git)
-└── README.md
+├── .venv/                     # Python virtual environment
+├── food-ingredients-1/        # Auxiliary ingredient data
+├── FOOD-INGREDIENTS-1/
+├── FOOD_INGREDIENTS-1/
+├── merged_dataset/             # Dataset merges (if any)
+├── SmartFridge-1/               # Related datasets/scripts
+├── ultralytics/                 # YOLO-related code/models
+├── .env                         # API keys (not tracked in Git)
+├── .gitignore
+├── best.pt                      # YOLO trained model (weights)
+├── Chat_interface.py            # Chat interface scripts
+├── DataSet_Preprocessing.py     # Dataset processing scripts
+├── Model_training.py             # YOLO model training scripts
+├── photo.jpeg                   # Example input image
+├── README.md
+├── requirements.txt
+├── rtdetr-l.pt                  # Additional YOLO model weights
+├── temp_input.jpg               # Latest processed image
+├── test.py                      # Test scripts
+├── User_input.py                 # Main entry point
+├── yolov8n.pt                   # YOLO model weights
+├── yolo11n.pt                   # YOLO model weights
 ```
 
 ---
 
 ## ⚡ Customization
 
-- **Recipes:** Replace or extend the recipe dataset (CSV or other formats).
-- **YOLO Model:** Train YOLO on additional or custom food categories.
-- **Interface:** Modify the Gradio layout in `app.py` to match your branding or add new features.
+* **Recipes:** Replace or extend the local recipe dataset CSV to add new recipes.
+* **YOLO Model:** Train YOLO on additional or custom food categories using your own images.
+* **Interface:** Modify the Gradio layout in `User_input.py` to adjust styling or add features.
 
 ---
 
 ## 🧪 Demo (Optional)
 
-If you want, add screenshots or a GIF showing:
+Include screenshots or GIFs of:
 
-- Ingredient detection on an image
-- Retrieved Kannada recipe
-- Conversational support answering a cooking question
+* Ingredient detection results on an image
+* Retrieved Kannada recipe display
+* Chatbot answering a cooking question in Kannada
 
 ---
 
 ## 🤝 Contributing
 
 1. Fork this repository
-2. Create your feature branch: `git checkout -b feature/awesome-idea`
-3. Commit your changes: `git commit -m 'Add awesome idea'`
-4. Push to the branch: `git push origin feature/awesome-idea`
+2. Create your feature branch:
+
+   ```bash
+   git checkout -b feature/your-feature
+   ```
+3. Commit your changes:
+
+   ```bash
+   git commit -m 'Add your feature'
+   ```
+4. Push to the branch:
+
+   ```bash
+   git push origin feature/your-feature
+   ```
 5. Open a Pull Request
 
 ---
 
 ## 🔒 Security Notes
 
-- Do not expose or commit API keys.
-- Use `.gitignore` to exclude `.env` and any sensitive datasets.
-- Rotate your keys periodically if this project is public.
+* Never expose or commit API keys.
+* Use `.gitignore` to exclude `.env` and private data.
+* Rotate your keys regularly, especially if the project is public.
 
 ---
 
 ## 🙏 Acknowledgements
 
-- &#x20;for object detection
-- &#x20;for dataset management
-- &#x20;for conversational AI
-- &#x20;for the interactive app UI
-- &#x20;for open recipe datasets
-
----
+* Ultralytics YOLO — Object detection engine
+* Gradio — Interactive app UI
+* Google Gemini — Conversational AI
+* ROBOFLOW — Open Kannada recipe datasets
